@@ -1,6 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
-
+from django.urls import reverse 
 # Create your models here.
 class Book(models.Model):
 
@@ -22,6 +22,7 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     author = models.CharField(max_length=255)
+    description = RichTextField(default="")
     total_chapters = models.PositiveIntegerField(default=0)
     chapters_read = models.PositiveIntegerField(default=0, null=True,blank=True)
     started_on = models.DateField(null=True,blank=True)
@@ -33,9 +34,12 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('book_detail', args=[str(self.slug),])
 
 class Chapter(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, related_name='chapters', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     ch_no = models.PositiveIntegerField(default=0)
@@ -43,3 +47,6 @@ class Chapter(models.Model):
     
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('chapter_detail', args=[str(self.book.slug), str(self.slug),])

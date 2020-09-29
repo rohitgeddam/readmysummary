@@ -6,7 +6,8 @@ from .models import Book, Chapter
 
 class ChapterAdmin(nested_admin.NestedStackedInline):
     model = Chapter
-    extra = 1
+    prepopulated_fields = {"slug": ("title",)}
+    extra = 0
 
 
 class BookAdmin(nested_admin.NestedModelAdmin):

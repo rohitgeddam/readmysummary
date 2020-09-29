@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+    {{chapter.title}}
+{% endblock title %}
+
+
+{% block content %}
+    <div class="col-xs-12">
+        <div id="paper">
+  <div id="pattern">
+    <div id="content">
+     <h1>{{chapter.title}}</h1>
+    
+      {{chapter.summary}}
+    </div>
+  </div>
+</div>
+
+<div>
+{% endblock content %}

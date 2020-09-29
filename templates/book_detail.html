@@ -1,0 +1,58 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+    {{book.title}}
+{% endblock title %}
+
+
+{% block content %}
+    <div class="col-xs-12 col-md-4">
+        <div class="card" style="width: 15rem;">
+  <img class="card-img-top" src={{book.cover_image.url}} alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{book.title}}</h5>
+    <p class="card-text">{{book.description}}</p>
+    
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">By - {{book.author}}</li>
+    <li class="list-group-item">Genre- {{book.genre}}</li>
+    {% comment %} <li class="list-group-item">Vestibulum at eros</li> {% endcomment %}
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Buy on Amazon</a>
+ 
+  </div>
+</div>
+    
+    </div>
+
+    <div class="col-xs-12 col-md-5 ml-3">
+<ul class="list-group">
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+  
+    </tr>
+  </thead>
+  <tbody>
+ {% for chapter in book.chapters.all %}
+   
+    <tr>
+      <th scope="row">{{chapter.ch_no}}</th>
+      
+      <td> <a href="{{chapter.get_absolute_url}}" class="list-group-item">{{chapter.title|capfirst}}</a></td>
+
+    </tr>
+  {% endfor %}
+    
+  </tbody>
+</table>
+   
+</ul>
+    </div>
+
+{% endblock content %}
+
