@@ -16,7 +16,8 @@ class Book(models.Model):
         ('want to read', 'want to read'),
         ('currently reading', 'currently reading'),
         ('completed', 'completed'),
-        ('pause', 'pause')
+        ('pause', 'pause'),
+        
     )
 
     title = models.CharField(max_length=255)

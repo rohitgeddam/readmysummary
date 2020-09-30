@@ -1,26 +1,90 @@
 {% extends '_base.html' %}
 {% load static %}
 {% block title %}
-    Books
+Books
 {% endblock title %}
 
 
 {% block content %}
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-   
-    {% for book in book_list %}
-  
-        <div class="card" style="width: 18rem;">
-        <a href="{{book.get_absolute_url}}">
-        <img class="card-img-top" src="{{ book.cover_image.url }}" alt="Card image cap">
-        </a>
-        {% comment %} <div class="card-body">
-            <h5 class="card-title">{{book.title}}</h5>
-            <p class="card-text">{{book.description|truncatechars:255}}</p>
-            
-            <a href="{{ book.get_absolute_url }}" class="btn btn-warning">Read</a>
-        </div> {% endcomment %}
-        </div>
-    {% endfor %}
-<div>
-{% endblock content %}
+<div class="row">
+    <div style="width: 100%; margin-bottom: 50px;">
+    
+        <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="pills-allbooks-tab" data-toggle="pill" href="#pills-allbooks" role="tab"
+                    aria-controls="pills-allbooks" aria-selected="true">All Books</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-currentlyreading-tab" data-toggle="pill" href="#pills-currentlyreading"
+                    role="tab" aria-controls="pills-currentlyreading" aria-selected="false">Currently Reading</a>
+
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-alreadyread-tab" data-toggle="pill" href="#pills-alreadyread" role="tab"
+                    aria-controls="pills-alreadyread" aria-selected="false">Already Read</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<hr>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-allbooks" role="tabpanel"
+                    aria-labelledby="pills-allbooks-tab">
+                    {% for book in book_list %}
+
+                    <div class="card" style="width: 18rem;">
+                        <a href="{{book.get_absolute_url}}">
+                            <img class="card-img-top" src="{{ book.cover_image.url }}" alt="Card image cap">
+                        </a>
+                        {% comment %} <div class="card-body">
+                            <h5 class="card-title">{{book.title}}</h5>
+                            <p class="card-text">{{book.description|truncatechars:255}}</p>
+
+                            <a href="{{ book.get_absolute_url }}" class="btn btn-warning">Read</a>
+                        </div> {% endcomment %}
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <div class="tab-pane fade" id="pills-currentlyreading" role="tabpanel"
+                    aria-labelledby="pills-currentlyreading-tab">
+                       {% for book in currently_reading_list  %}
+                         <div class="card" style="width: 18rem;">
+                        <a href="{{book.get_absolute_url}}">
+                            <img class="card-img-top" src="{{ book.cover_image.url }}" alt="Card image cap">
+                        </a>
+                        {% comment %} <div class="card-body">
+                            <h5 class="card-title">{{book.title}}</h5>
+                            <p class="card-text">{{book.description|truncatechars:255}}</p>
+
+                            <a href="{{ book.get_absolute_url }}" class="btn btn-warning">Read</a>
+                        </div> {% endcomment %}
+                    </div>
+                       {% endfor %}
+                    </div>
+                <div class="tab-pane fade" id="pills-alreadyread" role="tabpanel"
+                    aria-labelledby="pills-alreadyread-tab">
+                     {% for book in already_read_list  %}
+                         <div class="card" style="width: 18rem;">
+                        <a href="{{book.get_absolute_url}}">
+                            <img class="card-img-top" src="{{ book.cover_image.url }}" alt="Card image cap">
+                        </a>
+                        {% comment %} <div class="card-body">
+                            <h5 class="card-title">{{book.title}}</h5>
+                            <p class="card-text">{{book.description|truncatechars:255}}</p>
+
+                            <a href="{{ book.get_absolute_url }}" class="btn btn-warning">Read</a>
+                        </div> {% endcomment %}
+                    </div>
+                       {% endfor %}
+                    </div>
+            </div>
+
+
+
+
+        <div>
+    </div>
+            {% endblock content %}

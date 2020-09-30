@@ -36,21 +36,21 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/">Books <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Wish List</a>
+        <a class="nav-link" href="{% url 'wishlist_list' %}">Wish List</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           More
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">About Me</a>
+          <a class="dropdown-item" href="{% url 'about' %}">About Me</a>
                     <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">My Website</a>
-          <a class="dropdown-item" href="#">My Blog</a>
+          <a class="dropdown-item" target="_blank" href="https://rohitgeddam.github.io/myPortfolioSite/">My Website</a>
+          <a class="dropdown-item" target="_blank" href="https://rohitgeddam.hashnode.dev/">My Blog</a>
         </div>
       </li>
     
@@ -65,10 +65,10 @@
     {% autoescape off %}
    
         <div style="margin: 50px 0;">
-        <div class="row">
-         {% block content %}
+        
+          {% block content %}
           {% endblock content %}
-           </div>
+         
         </div>
    
     {% endautoescape %}
@@ -86,7 +86,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-    <script src="" async defer></script>
+    <script src="{% static 'js/app.js' %}" async defer></script>
 </body>
 
 </html>

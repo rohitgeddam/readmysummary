@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+    Wish List
+{% endblock title %}
+
+
+{% block content %}
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+   {% if wishlist_list %}
+    {% for book in wishlist_list %}
+  
+        <div class="card" style="width: 18rem;">
+        <a href="{{book.get_absolute_url}}">
+        <img class="card-img-top" src="{{ book.cover_image.url }}" alt="Card image cap">
+        </a>
+        {% comment %} <div class="card-body">
+            <h5 class="card-title">{{book.title}}</h5>
+            <p class="card-text">{{book.description|truncatechars:255}}</p>
+            
+            <a href="{{ book.get_absolute_url }}" class="btn btn-warning">Read</a>
+        </div> {% endcomment %}
+        </div>
+    {% endfor %}
+    {% else %}
+        <p> No books in wishlist </p>
+    {% endif %}
+<div>
+{% endblock content %}
